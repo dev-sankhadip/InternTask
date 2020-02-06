@@ -51,4 +51,10 @@ userRouter.get('/',(request, respose)=>
     })
 })
 
+
+userRouter.post('/:userid',(request, respose)=>
+{
+    console.log(request.body);
+})
+
 module.exports=userRouter;
