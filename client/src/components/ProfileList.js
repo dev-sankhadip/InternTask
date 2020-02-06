@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 const ProfileList=()=>
 {
     const [users, setUsers]=useState([]);
-    useEffect(()=>
+    
+    const getUser=()=>
     {
         axios.get('http://localhost:1234/user')
         .then((res)=>
@@ -19,6 +20,10 @@ const ProfileList=()=>
             console.log(err);
             alert("Error");
         })
+    }
+    useEffect(()=>
+    {
+        getUser();
     },[])
 
 

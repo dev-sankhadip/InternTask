@@ -27,27 +27,34 @@ const ProfileCreate=()=>
 
     const submitHandler=async ()=>
     {
-        const formData=new FormData();
-        formData.append('file', file);
-        formData.append('name', name);
-        formData.append('interest', interest);
-        formData.append('email', email);
-        formData.append('age', age);
-        formData.append('number', number);
-        formData.append('skill', skill);
-        formData.append('hobby', hobby);
-        try{
-            const response=await axios.post('http://localhost:1234/user/create', formData, {
-                headers:{
-                    'Content-Type':'multipart/form-data',
-                },
-            })
-            console.log(response);
-        }
-        catch(err)
+        if(name=='' || interest=='' || email=='' || age=='' || number=='' || skill=='' || hobby=='' || file=='')
         {
-            console.log(err);
-            alert("Error");
+            alert('Fill up all fields');
+        }
+        else
+        {
+            const formData=new FormData();
+            formData.append('file', file);
+            formData.append('name', name);
+            formData.append('interest', interest);
+            formData.append('email', email);
+            formData.append('age', age);
+            formData.append('number', number);
+            formData.append('skill', skill);
+            formData.append('hobby', hobby);
+            try{
+                const response=await axios.post('http://localhost:1234/user/create', formData, {
+                    headers:{
+                        'Content-Type':'multipart/form-data',
+                    },
+                })
+                console.log(response);
+            }
+            catch(err)
+            {
+                console.log(err);
+                alert("Error");
+            }
         }
     }
 

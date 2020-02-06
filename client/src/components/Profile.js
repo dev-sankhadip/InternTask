@@ -5,7 +5,8 @@ import axios from 'axios';
 const Profile=(props)=>
 {
     const [user, setUser]=useState([]);
-    useEffect(()=>
+
+    const getUser=()=>
     {
         const { userid }=props.match.params;
         axios.get(`http://localhost:1234/user/${userid}`)
@@ -18,6 +19,11 @@ const Profile=(props)=>
             console.log(err);
             alert("Error");
         })
+    }
+
+    useEffect(()=>
+    {
+        getUser();
     },[])
 
 
