@@ -1,7 +1,7 @@
 import React,{ useState } from 'react'
-import { Input, Typography, Button, DatePicker } from 'antd'
+import { Input, Typography, Button } from 'antd'
 import './auth.css'
-
+import axios from 'axios';
 
 const ProfileCreate=()=>
 {
@@ -27,9 +27,29 @@ const ProfileCreate=()=>
         setFileName(e.target.files[0].name);
     }
 
-    const submitHandler=()=>
+    const submitHandler=async ()=>
     {
-        
+        const formData=new FormData();
+        formData.append('file', file);
+        formData.append('name', name);
+        formData.append('interest', interest);
+        formData.append('email', email);
+        formData.append('age', age);
+        formData.append('number', number);
+        formData.append('skill', skill);
+        formData.append('hobby', hobby);
+        try{
+            const response=await axios.post('http://localhost:1234/user/create', formData, {
+                headers:{
+                    'Content-Type':'multipart/form-data',
+                },
+            })
+            console.log(response);
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
     }
 
     return(
