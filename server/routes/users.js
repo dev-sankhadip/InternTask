@@ -52,9 +52,20 @@ userRouter.get('/',(request, respose)=>
 })
 
 
-userRouter.post('/:userid',(request, respose)=>
+userRouter.get('/:userid',(request, respose)=>
 {
-    console.log(request.body);
+    const { userid }=request.params;
+    console.log(userid);
+    const sql="select * from user where userid = ?";
+    connection.query(sql,[userid], function(err, result)
+    {
+        if(err)
+        {
+            return respose.status(500).send({ msg:"Internal error" });
+        }
+
+        respose.status(200).send({ result })
+    })
 })
 
 module.exports=userRouter;

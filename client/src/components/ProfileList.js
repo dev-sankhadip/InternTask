@@ -22,22 +22,13 @@ const ProfileList=()=>
     },[])
 
 
-    const usersView=users.length>0 ? users.map((user)=>
+    const usersView=users.length>0 ? users.map((user,i)=>
     {
         return(
-            <>
-            <div>
+            <div key={i}>
                 <Link to={'/'+user.userid}>Name: { user.name }</Link>
-                {/* <p>Email: { user.email }</p>
-                <p>Number: { user.number }</p>
-                <p>Age: { user.age }</p>
-                <p>Hobbies: { user.hobby }</p>
-                <p>Skills: { user.skill }</p>
-                <p>Interests: { user.interest }</p>
-                <img src={'http://localhost:1234/'+user.filename}  style={{ width:40, height:40 }} /> */}
-            </div>
             <hr/>
-            </>
+            </div>
         )
     }) : <p>No user</p>
 
