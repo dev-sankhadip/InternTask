@@ -13,20 +13,23 @@ const ProfileCreate=()=>
     const [skill, setSkill]=useState('');
     const [hobby, setHobby]=useState('');
     const [file, setFile]=useState('');
+    const [fileName, setFileName]=useState('');
 
     const updateInfo=(e, setter)=>
     {
-
+        console.log(e.target.value);
+        setter(e.target.value);
     }
 
-    const updateFile=(e, setter)=>
+    const updateFile=(e)=>
     {
-
+        setFile(e.target.files[0]);
+        setFileName(e.target.files[0].name);
     }
 
     const submitHandler=()=>
     {
-
+        
     }
 
     return(
@@ -49,7 +52,7 @@ const ProfileCreate=()=>
                     <Input type="number" placeholder="Your number" required onChange={(e)=>{ updateInfo(e, setNumber) }} name="number" />
                 </div>
                 <div className="custom-file" style={{ marginTop:10 }}>
-                    <input type="file" className="custom-file-input" id="customFile" onChange={(e)=>{ updateFile(e,setFile) }} required />
+                    <input type="file" className="custom-file-input" id="customFile" onChange={(e)=>{ updateFile(e) }} required />
                     <label className="custom-file-label" htmlFor="customFile">Choose file</label>
                 </div>
                 <div style={{ marginTop:10 }}>
