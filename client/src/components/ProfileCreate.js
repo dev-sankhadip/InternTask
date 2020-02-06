@@ -13,7 +13,6 @@ const ProfileCreate=()=>
     const [skill, setSkill]=useState('');
     const [hobby, setHobby]=useState('');
     const [file, setFile]=useState('');
-    const [fileName, setFileName]=useState('');
 
     const updateInfo=(e, setter)=>
     {
@@ -24,7 +23,6 @@ const ProfileCreate=()=>
     const updateFile=(e)=>
     {
         setFile(e.target.files[0]);
-        setFileName(e.target.files[0].name);
     }
 
     const submitHandler=async ()=>
@@ -49,13 +47,14 @@ const ProfileCreate=()=>
         catch(err)
         {
             console.log(err);
+            alert("Error");
         }
     }
 
     return(
         <React.Fragment>
             <form className="auth-form">
-                <Typography.Title level="3" underline={true} type="secondary">Create</Typography.Title>
+                <Typography.Title level={1} underline={true} type="secondary">Create</Typography.Title>
                 <div style={{ marginTop:10 }}>
                     <Input placeholder="Your Name" required onChange={(e)=>{ updateInfo(e, setName) }} name="username" />
                 </div>

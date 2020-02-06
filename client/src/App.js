@@ -4,7 +4,6 @@ import Profile from './components/Profile';
 import ProfileCreate from './components/ProfileCreate';
 import ProfileList from './components/ProfileList';
 
-
 class App extends React.Component
 {
   render()
@@ -12,6 +11,9 @@ class App extends React.Component
     return(
       <>
         <BrowserRouter>
+          <div>
+
+          </div>
           <Switch>
             <Route exact path="/" component={ProfileCreate} />
             <Route path="/list" component={ProfileList} />
