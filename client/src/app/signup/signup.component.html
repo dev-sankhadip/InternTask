@@ -1,0 +1,96 @@
+<div class="container" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form [formGroup]="signupForm">
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">UserId</span>
+                    </div>
+                    <input type="text" formControlName="userid" class="form-control" placeholder="Your Userid">
+                </div>
+                <div *ngIf="userid.invalid && (userid.dirty || userid.touched)" class="alert alert-danger">
+                    <div *ngIf="userid.errors.required">
+                        UserId is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">Username</span>
+                    </div>
+                    <input type="text" formControlName="username" class="form-control" placeholder="Your Username">
+                </div>
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                        UserName is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">Email Address</span>
+                    </div>
+                    <input type="text" formControlName="email" class="form-control" placeholder="Your email address">
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        Email Address is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">Password</span>
+                    </div>
+                    <input type="text" formControlName="password" class="form-control" placeholder="Your Password">
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        Password is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">Confirm Password</span>
+                    </div>
+                    <input type="text" formControlName="cpassword" class="form-control" placeholder="Confirm Password">
+                </div>
+                <div *ngIf="cpassword.invalid && (cpassword.dirty || cpassword.touched)" class="alert alert-danger">
+                    <div *ngIf="cpassword.errors.required">
+                        Name is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">Phone no</span>
+                    </div>
+                    <input type="text" formControlName="phone" class="form-control" placeholder="Your Phone no">
+                </div>
+                
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="read" formControlName="permission" value="read" class="custom-control-input">
+                    <label class="custom-control-label" for="read">Read</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="write" formControlName="permission" value="write" class="custom-control-input">
+                    <label class="custom-control-label" for="write">Write</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="report" formControlName="permission" value="report" class="custom-control-input">
+                    <label class="custom-control-label" for="report">Report</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="all" formControlName="permission" value="all" class="custom-control-input">
+                    <label class="custom-control-label" for="all">All</label>
+                </div>
+
+                
+                <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Submit</button>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
