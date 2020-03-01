@@ -30,6 +30,12 @@
                 
                 <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
             </form>
+            <div class="alert alert-danger alert-dismissible fade show" *ngIf="error.length>0" role="alert">
+                {{ error }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <span routerLink='/signup'>Don't have account, <span style="color: black; font-weight: bold;">Register Here</span></span>
         </div>
         <div class="col-3"></div>
