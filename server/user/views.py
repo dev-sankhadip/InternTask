@@ -40,10 +40,3 @@ def signup(request):
             print(e)
     else:
         return HttpResponseNotAllowed('Not allowed')
-
-
-def generateRandomString():
-    N = 7
-    res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = N))
-    print(res)
-    return res
