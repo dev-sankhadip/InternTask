@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
+
 import { UserService } from '../service/user.service';
 
 
@@ -10,7 +12,7 @@ import { UserService } from '../service/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private service:UserService ) { }
+  constructor( private service:UserService, private router:Router ) { }
 
   loginForm=new FormGroup({
     user:new FormControl('',[Validators.required]),
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
     this.service.login(this.loginForm.value)
     .subscribe((res)=>
     {
-      console.log(res);
+      window.localStorage.setItem('token', res['token']);
+      this.router.navigate(['dashboard']);
     },(err)=>
     {
       console.log(err);
