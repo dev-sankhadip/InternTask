@@ -1,8 +1,9 @@
 <div class="container" style="padding-top: 30px;">
     <div class="row">
         <div class="col-3"></div>
-        <div class="col-6">
-            <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="col-6 shadow" style="border: 1px solid gray; padding: 20px;">
+            <p style="text-align: center; color: brown; font-size: 30px;">Login</p>
+            <form [formGroup]="loginForm" (ngSubmit)="submit()" style="margin-bottom: 10px;">
                 <div class="input-group flex-nowrap mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning">Username / Email</span>
@@ -29,6 +30,7 @@
                 
                 <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
             </form>
+            <span routerLink='/signup'>Don't have account, <span style="color: black; font-weight: bold;">Register Here</span></span>
         </div>
         <div class="col-3"></div>
     </div>
