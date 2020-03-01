@@ -56,3 +56,17 @@ def signup(request):
             print(e)
     else:
         return HttpResponseNotAllowed('Not allowed')
+
+
+@csrf_exempt
+def users(request):
+    if request.method=='GET':
+        try:
+            cursor.execute('select * from user_usermodel')
+            users=cursor.fetchall()
+            return JsonResponse({ 'code':'200','users':users })
+        except Exception as e:
+            print(e)
+            return HttpResponseServerError("Server error")
+    else:
+        return HttpResponseNotAllowed("Method not allowed")
