@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseServerError
 from django.db import connection
+from django.contrib.auth.hashers import make_password, check_password
 import json
 import string
 import random
@@ -31,7 +32,7 @@ def signup(request):
             cursor.execute(f"select * from user_usermodel where username='{username}' or email='{email}'")
             isUser=cursor.fetchall()
             if len(isUser)==0:
-                cursor.execute(f"insert into user_usermodel values('{random.getrandbits(128)}', '{userid}', '{username}', '{email}', '{password}', '{phone}','{permission}', 'user')")
+                cursor.execute(f"insert into user_usermodel values('{userid}', '{username}', '{email}', '{make_password(password)}', '{phone}','{permission}', 'user')")
                 return JsonResponse({ "code":201 })
             else:
                 return HttpResponseBadRequest("User already exists")
