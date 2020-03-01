@@ -5,7 +5,7 @@ from django.db import connection
 from django.contrib.auth.hashers import make_password, check_password
 import json
 import string
-import random
+import random,jwt
 
 
 cursor=connection.cursor()
@@ -15,20 +15,26 @@ cursor=connection.cursor()
 def login(request):
     if request.method=='POST':
         value=json.loads(request.body.decode('utf-8'))
-        user,pssword=value.values()
+        user,password=value.values()
         try:
             cursor.execute(f"select * from user_usermodel where username = '{user}' or email='{user}'")
             isUser=cursor.fetchall()
             if len(isUser)>0:
-                print(isUser)
+                if check_password(password, isUser[0][3]):
+                    payload={
+                        'username':isUser[0][1]
+                    }
+                    token=jwt.encode(payload,'task',algorithm='HS256',)
+                    return JsonResponse({ 'code':'200','token':f'{token}' })
+                else:
+                    return HttpResponseBadRequest("Password didn't match")
             else:
-                return HttpResponseNotFound("User not found");
+                return HttpResponseNotFound("User not found")
         except Exception as e:
             print(e)
-
-        return JsonResponse({ 'code':200 })
+            return HttpResponseServerError("Server error")
     else:
-        return HttpResponseNotAllowed('Not allowed')
+        return HttpResponseNotAllowed('Method Not allowed')
 
 
 
