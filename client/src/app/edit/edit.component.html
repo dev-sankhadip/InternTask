@@ -1,1 +1,115 @@
-<p>edit works!</p>
+<div class="container" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 shadow" style="border: 1px solid gray; padding: 40px;">
+            <p style="text-align: center; color: brown; font-size: 30px;">Edit Users</p>
+            <form [formGroup]="editForm" (ngSubmit)="submit()">
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-light">UserId</span>
+                    </div>
+                    <input type="text" formControlName="userid" class="form-control" placeholder="Your Userid">
+                </div>
+                <div *ngIf="userid.invalid && (userid.dirty || userid.touched)" class="alert alert-danger">
+                    <div *ngIf="userid.errors.required">
+                        UserId is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-light">Username</span>
+                    </div>
+                    <input type="text" formControlName="username" class="form-control" placeholder="Your Username">
+                </div>
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                        UserName is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-light">Email Address</span>
+                    </div>
+                    <input type="text" formControlName="email" class="form-control" placeholder="Your email address">
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        Email Address is required.
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        Not a valid Email Address
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-light">Password</span>
+                    </div>
+                    <input type="password" formControlName="password" class="form-control" placeholder="Your Password">
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        Password is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-light">Confirm Password</span>
+                    </div>
+                    <input type="password" formControlName="cpassword" class="form-control" placeholder="Confirm Password">
+                </div>
+                <div *ngIf="cpassword.invalid && (cpassword.dirty || cpassword.touched)" class="alert alert-danger">
+                    <!-- {{ cpassword.errors | json }} -->
+                    <div *ngIf="cpassword.errors.required">
+                        Password is required
+                    </div>
+                    <div *ngIf="cpassword.errors.isPasswordMatch.valid">
+                        Password didn't match
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-success text-light">Phone no</span>
+                    </div>
+                    <input type="text" formControlName="phone" class="form-control" placeholder="Your Phone no">
+                </div>
+                
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="read" formControlName="permission" value="read" class="custom-control-input">
+                    <label class="custom-control-label" for="read">Read</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="write" formControlName="permission" value="write" class="custom-control-input">
+                    <label class="custom-control-label" for="write">Write</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="report" formControlName="permission" value="report" class="custom-control-input">
+                    <label class="custom-control-label" for="report">Report</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="all" formControlName="permission" value="all" class="custom-control-input">
+                    <label class="custom-control-label" for="all">All</label>
+                </div>
+
+                <div *ngIf="permission.invalid && (permission.dirty || permission.touched)" class="alert alert-danger">
+                    <div *ngIf="permission.errors.required">
+                        permission is required
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+            </form>
+            <div class="alert alert-danger alert-dismissible fade show" *ngIf="error.length>0" role="alert">
+                {{ error }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
