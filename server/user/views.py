@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseServerError
+from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound
 from django.db import connection
 from django.contrib.auth.hashers import make_password, check_password
 import json
@@ -14,8 +14,18 @@ cursor=connection.cursor()
 @csrf_exempt
 def login(request):
     if request.method=='POST':
-        values=json.loads(request.body.decode('utf-8'))
-        print(values)
+        value=json.loads(request.body.decode('utf-8'))
+        user,pssword=value.values()
+        try:
+            cursor.execute(f"select * from user_usermodel where username = '{user}' or email='{user}'")
+            isUser=cursor.fetchall()
+            if len(isUser)>0:
+                print(isUser)
+            else:
+                return HttpResponseNotFound("User not found");
+        except Exception as e:
+            print(e)
+
         return JsonResponse({ 'code':200 })
     else:
         return HttpResponseNotAllowed('Not allowed')
