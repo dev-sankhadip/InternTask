@@ -13,7 +13,7 @@ import { UserService } from '../service/user.service';
 export class SignupComponent implements OnInit {
 
   constructor( private service:UserService ) { }
-  
+  public error:string='';
 
   signupForm=new FormGroup({
     userid:new FormControl(null,[ Validators.required ]),
@@ -49,6 +49,7 @@ export class SignupComponent implements OnInit {
     },(err)=>
     {
       console.log(err);
+      this.error=err.error;
     })
   }
 

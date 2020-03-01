@@ -1,7 +1,8 @@
 <div class="container" style="padding-top: 30px;">
     <div class="row">
         <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-6 shadow" style="border: 1px solid gray; padding: 20px;">
+            <p style="text-align: center; color: brown; font-size: 30px;">Signup</p>
             <form [formGroup]="signupForm" (ngSubmit)="submit()">
                 <div class="input-group flex-nowrap mb-2">
                     <div class="input-group-prepend">
@@ -102,6 +103,13 @@
                 
                 <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Submit</button>
             </form>
+            <div class="alert alert-danger alert-dismissible fade show" *ngIf="error.length>0" role="alert">
+                {{ error }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <span routerLink='/'>Have account, <span style="color: black; font-weight: bold;">Login Here</span></span>
         </div>
         <div class="col-3"></div>
     </div>
