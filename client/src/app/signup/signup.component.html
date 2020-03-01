@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <form [formGroup]="signupForm">
+            <form [formGroup]="signupForm" (ngSubmit)="submit()">
                 <div class="input-group flex-nowrap mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning">UserId</span>
@@ -61,6 +61,7 @@
                     <input type="text" formControlName="cpassword" class="form-control" placeholder="Confirm Password">
                 </div>
                 <div *ngIf="cpassword.invalid && (cpassword.dirty || cpassword.touched)" class="alert alert-danger">
+                    <!-- {{ cpassword.errors | json }} -->
                     <div *ngIf="cpassword.errors.required">
                         Password is required
                     </div>

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 
 
 import { passwordValidator } from '../validators/password'
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ import { passwordValidator } from '../validators/password'
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor( private service:UserService ) { }
   
 
   signupForm=new FormGroup({
@@ -38,5 +39,17 @@ export class SignupComponent implements OnInit {
   get cpassword() { return this.signupForm.get('cpassword'); }
 
   get permission() { return this.signupForm.get('permission');}
+
+  submit()
+  {
+    this.service.signup(this.signupForm.value)
+    .subscribe((res)=>
+    {
+      console.log(res);
+    },(err)=>
+    {
+      console.log(err);
+    })
+  }
 
 }

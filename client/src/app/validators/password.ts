@@ -7,7 +7,5 @@ export const passwordValidator=(control:AbstractControl) =>
     const cpassword=control.value;
     const password=control.root.value['password'];
     const valid = cpassword.localeCompare(password)==0 ? true : false;
-    return valid ?
-    { isPasswordMatch:{ valid:false, value:control.value } }
-     : { isPasswordMatch:{ valid:true, value:control.value } }
+    return !valid ? { isPasswordMatch:{ valid:true } } : null
 }
