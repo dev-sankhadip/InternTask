@@ -46,7 +46,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning">Password</span>
                     </div>
-                    <input type="text" formControlName="password" class="form-control" placeholder="Your Password">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Your Password">
                 </div>
                 <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
                     <div *ngIf="password.errors.required">
@@ -58,7 +58,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning">Confirm Password</span>
                     </div>
-                    <input type="text" formControlName="cpassword" class="form-control" placeholder="Confirm Password">
+                    <input type="password" formControlName="cpassword" class="form-control" placeholder="Confirm Password">
                 </div>
                 <div *ngIf="cpassword.invalid && (cpassword.dirty || cpassword.touched)" class="alert alert-danger">
                     <!-- {{ cpassword.errors | json }} -->

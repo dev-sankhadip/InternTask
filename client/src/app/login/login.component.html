@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="container" style="padding-top: 30px;">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">Username / Email</span>
+                    </div>
+                    <input type="text" formControlName="user" class="form-control" placeholder="Your Username or Email address">
+                </div>
+                <div *ngIf="user.invalid && (user.dirty || user.touched)" class="alert alert-danger">
+                    <div *ngIf="user.errors.required">
+                        Username or Email is required.
+                    </div>
+                </div>
+                
+                <div class="input-group flex-nowrap mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning">Password</span>
+                    </div>
+                    <input type="password" formControlName="password" class="form-control" placeholder="Your Password">
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        Password is required.
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

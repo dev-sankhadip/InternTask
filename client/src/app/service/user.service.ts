@@ -15,4 +15,9 @@ export class UserService {
   {
     return this.http.post(this.url+'user/signup', value);
   }
+
+  login(value)
+  {
+    return this.http.post(this.url+'user/login',value);
+  }
 }
