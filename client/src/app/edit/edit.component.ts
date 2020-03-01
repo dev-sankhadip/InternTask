@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { passwordValidator } from '../validators/password';
+import { UserService } from '../service/user.service';
 
 
 @Component({
@@ -11,8 +12,8 @@ import { passwordValidator } from '../validators/password';
 })
 export class EditComponent implements OnInit {
 
-  constructor( private route:ActivatedRoute ) { }
-  public id:String;
+  constructor( private route:ActivatedRoute, private service:UserService ) { }
+  public user:String;
   public error:string='';
   
   editForm=new FormGroup({
@@ -26,8 +27,8 @@ export class EditComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.id=this.route.snapshot.params['id'];
-    console.log(this.id);
+    this.user=this.route.snapshot.params['username'];
+    console.log(this.user);
   }
 
   get userid() { return this.editForm.get('userid'); }

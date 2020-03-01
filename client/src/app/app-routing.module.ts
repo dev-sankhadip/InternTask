@@ -15,7 +15,7 @@ const routes: Routes = [
       { path:'', component:DashboardComponent },
       { path:'list', component:DashboardComponent },
       { path:'edit', component:EditComponent },
-      { path:'edit/:id', component:EditComponent }
+      { path:'edit/:username', component:EditComponent }
     ]
   }
 ];

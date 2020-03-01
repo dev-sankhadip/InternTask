@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public users=[];
+  public usersArray=[];
   public type:string='';
 
   getUsers():void
@@ -25,8 +26,8 @@ export class DashboardComponent implements OnInit {
     this.service.listUser()
     .subscribe((res)=>
     {
-      console.log(res);
       this.users=res['users']
+      this.usersArray=res['users'];
       console.log(this.users);
     },(err)=>
     {
@@ -37,5 +38,73 @@ export class DashboardComponent implements OnInit {
   gotoEdit(username)
   {
     this.router.navigate([`/dashboard/edit/${username}`]);
+  }
+
+  filterUserid(e)
+  {
+    if(e.target.value.length==0)
+    {
+      this.users=this.usersArray;
+      return;
+    }
+    this.users=[];
+    this.usersArray.map((user)=>
+    {
+      if(user[0].startsWith(e.target.value))
+      {
+        this.users.push(user);
+      }
+    })
+  }
+
+  filterUsername(e)
+  {
+    if(e.target.value.length==0)
+    {
+      this.users=this.usersArray;
+      return;
+    }
+    this.users=[];
+    this.usersArray.map((user)=>
+    {
+      if(user[2].startsWith(e.target.value))
+      {
+        this.users.push(user);
+      }
+    })
+  }
+
+  filterEmail(e)
+  {
+    if(e.target.value.length==0)
+    {
+      this.users=this.usersArray;
+      return;
+    }
+    this.users=[];
+    this.usersArray.map((user)=>
+    {
+      if(user[3].startsWith(e.target.value))
+      {
+        this.users.push(user);
+      }
+    })
+  }
+
+  filterPhone(e)
+  {
+    if(e.target.value.length==0)
+    {
+      this.users=this.usersArray;
+      return;
+    }
+    this.users=[];
+    this.usersArray.map((user)=>
+    {
+      if(user[4].startsWith(e.target.value))
+      {
+        this.users.push(user);
+      }
+    })
   }
 }

@@ -25,4 +25,9 @@ export class UserService {
   {
     return this.http.get(this.url+'user/users');
   }
+
+  getUserValue(username)
+  {
+    return this.http.get(this.url+`user/${username}`);
+  }
 }

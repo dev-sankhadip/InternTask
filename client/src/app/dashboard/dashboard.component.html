@@ -14,10 +14,10 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" (input)="filterUserid($event)"></td>
+                        <td><input type="text" (input)="filterUsername($event)"></td>
+                        <td><input type="email" (input)="filterEmail($event)"></td>
+                        <td><input type="number" (input)="filterPhone($event)"></td>
                         <td></td>
                     </tr>
                     <ng-container *ngFor="let user of users">
