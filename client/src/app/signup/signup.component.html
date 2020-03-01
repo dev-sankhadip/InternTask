@@ -37,6 +37,9 @@
                     <div *ngIf="email.errors.required">
                         Email Address is required.
                     </div>
+                    <div *ngIf="email.errors.email">
+                        Not a valid Email Address
+                    </div>
                 </div>
                 
                 <div class="input-group flex-nowrap mb-2">
@@ -59,7 +62,10 @@
                 </div>
                 <div *ngIf="cpassword.invalid && (cpassword.dirty || cpassword.touched)" class="alert alert-danger">
                     <div *ngIf="cpassword.errors.required">
-                        Name is required.
+                        Password is required
+                    </div>
+                    <div *ngIf="cpassword.errors.isPasswordMatch.valid">
+                        Password didn't match
                     </div>
                 </div>
                 
@@ -87,6 +93,11 @@
                     <label class="custom-control-label" for="all">All</label>
                 </div>
 
+                <div *ngIf="permission.invalid && (permission.dirty || permission.touched)" class="alert alert-danger">
+                    <div *ngIf="permission.errors.required">
+                        permission is required
+                    </div>
+                </div>
                 
                 <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Submit</button>
             </form>
