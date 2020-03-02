@@ -74,10 +74,22 @@ def users(request):
     else:
         return HttpResponseNotAllowed("Method not allowed")
 
+
+
 @csrf_exempt
 def user(request, username):
-    print(username)
     if request.method=='GET':
-        return JsonResponse({ 'code':'200' })
+        try:
+            cursor.execute(f"select * from user_usermodel where username='{username}'")
+            user=cursor.fetchall()
+            return JsonResponse({ 'code':'200','user':user })
+        except Exception as e:
+            print(e)
+            return HttpResponseServerError("Server error")
     else:
         return HttpResponseNotAllowed("Method not allowed")
+
+
+@csrf_exempt
+def updateUser(request):
+    pass
