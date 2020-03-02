@@ -9,5 +9,6 @@ urlpatterns=[
     path('users', views.users),
     path('',views.users),
     path('edit', views.UpdateUser),
+    path('download', views.download),
     path('<str:username>', views.user),
 ]

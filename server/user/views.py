@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound
+from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound
 from django.db import connection
 from django.contrib.auth.hashers import make_password, check_password
-import json
-import string
-import random,jwt
+import random,jwt,csv,json,string
+
 
 from .jwt import checkJwt
+from .models import UserModel
 
 cursor=connection.cursor()
 
@@ -105,3 +105,15 @@ def UpdateUser(request):
             return JsonResponse({'code':'200'})
         else:
             return HttpResponseBadRequest("Unauthorised")
+
+
+@csrf_exempt
+def download(request):
+    response = HttpResponse(content_type='text/csv')  
+    response['Content-Disposition'] = 'attachment; filename="file.csv"'
+    writer = csv.writer(response)
+    cursor.execute('select * from user_usermodel')
+    users=cursor.fetchall()
+    for user in users:
+        writer.writerow([user[0],user[1],user[2], user[4], user[5], user[6]])
+    return response
