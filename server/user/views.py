@@ -91,5 +91,17 @@ def user(request, username):
 
 
 @csrf_exempt
-def updateUser(request):
-    pass
+def UpdateUser(request):
+    if request.method=='POST':
+        value=json.loads(request.body.decode('utf-8'))
+        userid, username, email, phone, permission = value['value'].values()
+        updatableUser=value['username']
+        
+        token=request.headers['Authorization'].split("'")
+        usernameJwt=checkJwt(token[1])
+
+        if usernameJwt!='error' or usernameJwt!=None:
+            cursor.execute(f"update user_usermodel set username='{username}', email='{email}', phone='{phone}', permission='{permission}' ")
+            return JsonResponse({'code':'200'})
+        else:
+            return HttpResponseBadRequest("Unauthorised")
