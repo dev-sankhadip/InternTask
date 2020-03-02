@@ -7,6 +7,7 @@ import json
 import string
 import random,jwt
 
+from .jwt import checkJwt
 
 cursor=connection.cursor()
 
@@ -25,7 +26,7 @@ def login(request):
                         'username':isUser[0][1]
                     }
                     token=jwt.encode(payload,'task',algorithm='HS256',)
-                    return JsonResponse({ 'code':'200','token':f'{token}' })
+                    return JsonResponse({ 'code':'200','token':f'{token}', 'type':f'{isUser[0][6]}' })
                 else:
                     return HttpResponseBadRequest("Password didn't match")
             else:
@@ -62,11 +63,21 @@ def signup(request):
 def users(request):
     if request.method=='GET':
         try:
+            token=request.headers['Authorization'].split("'")
+            username=checkJwt(token[1])
             cursor.execute('select * from user_usermodel')
             users=cursor.fetchall()
-            return JsonResponse({ 'code':'200','users':users })
+            return JsonResponse({ 'code':'200','users':users, 'username':username })
         except Exception as e:
             print(e)
             return HttpResponseServerError("Server error")
+    else:
+        return HttpResponseNotAllowed("Method not allowed")
+
+@csrf_exempt
+def user(request, username):
+    print(username)
+    if request.method=='GET':
+        return JsonResponse({ 'code':'200' })
     else:
         return HttpResponseNotAllowed("Method not allowed")
