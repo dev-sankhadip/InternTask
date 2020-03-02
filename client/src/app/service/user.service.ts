@@ -32,9 +32,9 @@ export class UserService {
     return this.http.get(this.url+`user/${username}`);
   }
 
-  updateUser(value)
+  updateUser(value, username)
   {
     const token=window.localStorage.getItem('token');
-    return this.http.put(this.url+'user/update',value,{headers:new HttpHeaders({'Authorization':token})});
+    return this.http.post(this.url+'user/edit',{value, username},{headers:new HttpHeaders({'Authorization':token})});
   }
 }

@@ -62,10 +62,10 @@ export class EditComponent implements OnInit {
 
   submit()
   {
-    this.service.updateUser(this.editForm.value)
+    this.service.updateUser(this.editForm.value, this.user)
     .subscribe((res)=>
     {
-      console.log(res);
+      alert("Updated");
     },(err)=>
     {
       this.error=err.error;
