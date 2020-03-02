@@ -3,7 +3,7 @@
     <a routerLink="/dashboard/list">List Users</a>
     <a [routerLink]="['/dashboard/edit/',username]">Edit User {{ username }}</a>
     <a href="#">Import Data</a>
-    <a href="#">Logout</a>
+    <a (click)="logout()">Logout</a>
 </div>
 
 <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>

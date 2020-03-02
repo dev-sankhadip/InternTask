@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router:Router ) { }
   @Input('UserName') public username;
 
   ngOnInit(): void {
@@ -19,6 +21,13 @@ export class NavbarComponent implements OnInit {
   
   closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+  }
+
+  logout()
+  {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("type");
+    this.router.navigate([''])
   }
 
 }

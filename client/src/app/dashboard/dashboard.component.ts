@@ -18,12 +18,13 @@ export class DashboardComponent implements OnInit {
 
   public users=[];
   public usersArray=[];
-  public type:string='';
+  public isUser:boolean;
   public username:string='';
 
   getUsers():void
   {
-    this.type=atob(window.localStorage.getItem('type'));
+    const type=atob(window.localStorage.getItem('type'));
+    type=='user' ? this.isUser=true : this.isUser=false;
     this.service.listUser()
     .subscribe((res)=>
     {
