@@ -8,7 +8,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-success text-light">UserId</span>
                     </div>
-                    <input type="text" formControlName="userid" class="form-control" placeholder="Your Userid">
+                    <input type="text" disabled formControlName="userid" class="form-control" placeholder="Your Userid">
                 </div>
                 <div *ngIf="userid.invalid && (userid.dirty || userid.touched)" class="alert alert-danger">
                     <div *ngIf="userid.errors.required">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 
-                <div class="input-group flex-nowrap mb-2">
+                <!-- <div class="input-group flex-nowrap mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-success text-light">Password</span>
                     </div>
@@ -62,14 +62,13 @@
                     <input type="password" formControlName="cpassword" class="form-control" placeholder="Confirm Password">
                 </div>
                 <div *ngIf="cpassword.invalid && (cpassword.dirty || cpassword.touched)" class="alert alert-danger">
-                    <!-- {{ cpassword.errors | json }} -->
                     <div *ngIf="cpassword.errors.required">
                         Password is required
                     </div>
                     <div *ngIf="cpassword.errors.isPasswordMatch.valid">
                         Password didn't match
                     </div>
-                </div>
+                </div> -->
                 
                 <div class="input-group flex-nowrap mb-2">
                     <div class="input-group-prepend">

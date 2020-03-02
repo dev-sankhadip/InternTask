@@ -20,8 +20,8 @@ export class EditComponent implements OnInit {
     userid:new FormControl(null,[ Validators.required ]),
     username:new FormControl('',[ Validators.required ]),
     email:new FormControl('',[ Validators.required, Validators.email ]),
-    password:new FormControl('',[ Validators.required ]),
-    cpassword:new FormControl('',[ Validators.required, passwordValidator ]),
+    // password:new FormControl('',[ Validators.required ]),
+    // cpassword:new FormControl('',[ Validators.required, passwordValidator ]),
     phone:new FormControl(''),
     permission:new FormControl('',[ Validators.required ])
   })
@@ -29,6 +29,23 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.user=this.route.snapshot.params['username'];
     console.log(this.user);
+    this.service.getUserValue(this.user)
+    .subscribe((res)=>
+    {
+      console.log(res);
+      this.editForm.patchValue({
+        userid:res['user'][0][0], 
+        username:res['user'][0][1],
+        email:res['user'][0][2],
+        // password:res['user'][0][3],
+        // cpassword:res['user'][0][3],
+        phone:res['user'][0][4],
+        permission:res['user'][0][5]
+      })
+    },(err)=>
+    {
+      console.log(err);
+    })
   }
 
   get userid() { return this.editForm.get('userid'); }
@@ -45,7 +62,14 @@ export class EditComponent implements OnInit {
 
   submit()
   {
-
+    this.service.updateUser(this.editForm.value)
+    .subscribe((res)=>
+    {
+      console.log(res);
+    },(err)=>
+    {
+      this.error=err.error;
+    })
   }
 
 }
