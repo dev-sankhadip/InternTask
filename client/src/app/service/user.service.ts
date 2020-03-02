@@ -37,4 +37,9 @@ export class UserService {
     const token=window.localStorage.getItem('token');
     return this.http.post(this.url+'user/edit',{value, username},{headers:new HttpHeaders({'Authorization':token})});
   }
+
+  download()
+  {
+    return this.http.get(this.url+'user/download',{responseType:'blob'})
+  }
 }

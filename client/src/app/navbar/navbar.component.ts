@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router'
+import { UserService } from '../service/user.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router'
 })
 export class NavbarComponent implements OnInit {
 
-  constructor( private router:Router ) { }
+  constructor( private router:Router, private service:UserService ) { }
   @Input('UserName') public username;
 
   ngOnInit(): void {
@@ -28,6 +29,25 @@ export class NavbarComponent implements OnInit {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("type");
     this.router.navigate([''])
+  }
+
+  downloadCSV()
+  {
+    this.service.download()
+    .subscribe((res)=>
+    {
+      console.log(res);
+      const blob=new Blob([res]);
+      const url=window.URL.createObjectURL(blob);
+      const link=document.createElement("a");
+      link.href=url;
+      link.setAttribute("download",'file.csv');
+      document.body.appendChild(link);
+      link.click();
+    },(err)=>
+    {
+      console.log(err);
+    })
   }
 
 }
