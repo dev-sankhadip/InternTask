@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -23,7 +23,8 @@ export class UserService {
 
   listUser()
   {
-    return this.http.get(this.url+'user/users');
+    const token=window.localStorage.getItem("token");
+    return this.http.get(this.url+'user/users',{headers:new HttpHeaders({ 'Authorization':token })});
   }
 
   getUserValue(username)

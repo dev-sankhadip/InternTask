@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   public users=[];
   public usersArray=[];
   public type:string='';
+  public username:string='';
 
   getUsers():void
   {
@@ -26,9 +27,9 @@ export class DashboardComponent implements OnInit {
     this.service.listUser()
     .subscribe((res)=>
     {
+      this.username=res['username'];
       this.users=res['users']
       this.usersArray=res['users'];
-      console.log(this.users);
     },(err)=>
     {
       console.log(err);
