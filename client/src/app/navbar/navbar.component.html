@@ -2,7 +2,7 @@
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
     <a routerLink="/dashboard/list">List Users</a>
     <a [routerLink]="['/dashboard/edit/',username]">Edit User {{ username }}</a>
-    <a (click)="downloadCSV()">Import Data</a>
+    <a routerLink="file">Import Data</a>
     <a (click)="logout()">Logout</a>
 </div>
 

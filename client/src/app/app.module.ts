@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EditComponent } from './edit/edit.component';
+import { FileComponent } from './file/file.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditComponent } from './edit/edit.component';
     SignupComponent,
     DashboardComponent,
     NavbarComponent,
-    EditComponent
+    EditComponent,
+    FileComponent
   ],
   imports: [
     BrowserModule,

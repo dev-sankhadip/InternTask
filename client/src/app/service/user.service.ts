@@ -42,4 +42,9 @@ export class UserService {
   {
     return this.http.get(this.url+'user/download',{responseType:'blob'})
   }
+
+  upload(formData)
+  {
+    return this.http.post(this.url+'user/upload', formData)
+  }
 }

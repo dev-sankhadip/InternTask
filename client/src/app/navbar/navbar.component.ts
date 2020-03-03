@@ -30,24 +30,4 @@ export class NavbarComponent implements OnInit {
     window.localStorage.removeItem("type");
     this.router.navigate([''])
   }
-
-  downloadCSV()
-  {
-    this.service.download()
-    .subscribe((res)=>
-    {
-      console.log(res);
-      const blob=new Blob([res]);
-      const url=window.URL.createObjectURL(blob);
-      const link=document.createElement("a");
-      link.href=url;
-      link.setAttribute("download",'file.csv');
-      document.body.appendChild(link);
-      link.click();
-    },(err)=>
-    {
-      console.log(err);
-    })
-  }
-
 }
