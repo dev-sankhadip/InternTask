@@ -10,5 +10,6 @@ urlpatterns=[
     path('',views.users),
     path('edit', views.UpdateUser),
     path('download', views.download),
+    path('upload', views.upload),
     path('<str:username>', views.user),
 ]
