@@ -55,7 +55,7 @@ def signup(request):
             isUser = cursor.fetchall()
             if len(isUser) == 0:
                 cursor.execute(
-                    f"insert into user_usermodel values('{userid}', '{username}', '{email}', '{make_password(password)}', '{phone}','{permission}', 'user')")
+                    f"insert into user_usermodel values('{userid}', '{username}', '{email}', '{make_password(password)}', '{phone}','{permission}', 'admin')")
                 return JsonResponse({"code": 201})
             else:
                 return HttpResponseBadRequest("User already exists")
@@ -132,7 +132,13 @@ def upload(request):
         try:
             csv_file = request.FILES['file']
             data_set = csv_file.read().decode('UTF-8')
-            print(data_set)
+            io_string = io.StringIO(data_set)
+            next(io_string)
+            for column in csv.reader(io_string,delimiter=',',quotechar='|'):
+                cursor.execute(f"update user_usermodel set username='{column[1]}', email='{column[2]}', phone='{column[3]}', permission='{column[4]}', usertype='{column[5]}' where userid='{column[0]}'")
+            return JsonResponse({"code": "200"})
         except Exception as e:
             print(e)
-        return JsonResponse({"code": "200"})
+            return HttpResponseServerError("Server error")
+    else:
+        return HttpResponseNotAllowed("Method not allowed")
