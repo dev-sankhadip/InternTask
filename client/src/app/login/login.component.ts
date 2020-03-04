@@ -12,30 +12,61 @@ import { UserService } from '../service/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private service:UserService, private router:Router ) { }
+  constructor(private service: UserService, private router: Router) { }
 
-  loginForm=new FormGroup({
-    user:new FormControl('',[Validators.required]),
-    password:new FormControl('',[Validators.required])
+  loginForm = new FormGroup({
+    user: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
   })
 
-  public error:string='';
+  public error: string = '';
 
   ngOnInit(): void {
   }
 
-  submit()
-  {
-    this.service.login(this.loginForm.value)
-    .subscribe((res)=>
+  submit() {
+    let cookies=document.cookie.split(';');
+    new Promise((resolve, reject)=>
     {
-      window.localStorage.setItem('token', res['token']);
-      window.localStorage.setItem('type',btoa(res['type']));
-      this.router.navigate(['dashboard']);
-    },(err)=>
+      for(let i=0;i<cookies.length;i++)
+      {
+        let cookie=cookies[i].trim().split('=');
+        if(cookie[0]=='attempt')
+        {
+          reject();
+        }
+      }
+      resolve();
+    })
+    .then((res)=>
     {
-      console.log(err);
-      this.error=err.error;
+      this.service.login(this.loginForm.value)
+      .subscribe((res) => {
+        window.localStorage.setItem('token', res['token']);
+        window.localStorage.setItem('type', btoa(res['type']));
+        this.router.navigate(['dashboard']);
+      }, (err) => {
+        this.error = err.error;
+        let attempt=localStorage.getItem("attempt");
+        if (attempt) {
+          if(parseInt(attempt)==2)
+          {
+            var date = new Date();
+            date.setTime(date.getTime()+300000);
+            document.cookie = "attempt=3"+"; expires="+date.toGMTString()+"; path=/";
+            localStorage.setItem("attempt", (parseInt(attempt) + 1).toString());
+            return;
+          }
+          localStorage.setItem("attempt", (parseInt(attempt) + 1).toString());
+        }
+        else {
+          localStorage.setItem("attempt", "1")
+        }
+      })
+    })
+    .catch((err)=>
+    {
+      alert("Try after 5 min");
     })
   }
 

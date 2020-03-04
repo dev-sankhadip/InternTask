@@ -46,6 +46,7 @@ export class SignupComponent implements OnInit {
     .subscribe((res)=>
     {
       console.log(res);
+      this.signupForm.reset();
     },(err)=>
     {
       console.log(err);
