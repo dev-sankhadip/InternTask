@@ -8,14 +8,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning">Username / Email</span>
                     </div>
-                    <input type="text" formControlName="user" class="form-control" placeholder="Your Username or Email address">
+                    <input type="text" formControlName="user" class="form-control"
+                        placeholder="Your Username or Email address">
                 </div>
                 <div *ngIf="user.invalid && (user.dirty || user.touched)" class="alert alert-danger">
                     <div *ngIf="user.errors.required">
                         Username or Email is required.
                     </div>
                 </div>
-                
+
                 <div class="input-group flex-nowrap mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-warning">Password</span>
@@ -27,7 +28,7 @@
                         Password is required.
                     </div>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
             </form>
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="error.length>0" role="alert">
@@ -36,7 +37,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <span routerLink='/signup'>Don't have account, <span style="color: black; font-weight: bold;">Register Here</span></span>
+            <span routerLink='/signup'>Don't have account, <span style="color: black; font-weight: bold;">Register
+                    Here</span></span>
         </div>
         <div class="col-3"></div>
     </div>

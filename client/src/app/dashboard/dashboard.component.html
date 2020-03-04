@@ -1,4 +1,4 @@
-<app-navbar [UserName]="username"></app-navbar>
+<app-navbar [UserName]="username" [IsUser]="isUser"></app-navbar>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -10,7 +10,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Edit</th>
-                  </tr>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
@@ -26,7 +26,8 @@
                             <td>{{ user[1] }}</td>
                             <td>{{ user[2] }}</td>
                             <td>{{ user[4] }}</td>
-                            <td><button [disabled]="isUser" class="btn btn-success" (click)="gotoEdit(user[1])">Edit</button></td>
+                            <td><button [disabled]="isUser" class="btn btn-success"
+                                    (click)="gotoEdit(user[1])">Edit</button></td>
                         </tr>
                     </ng-container>
                 </tbody>

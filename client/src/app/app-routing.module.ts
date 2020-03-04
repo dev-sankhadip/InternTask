@@ -8,16 +8,16 @@ import { FileComponent } from './file/file.component';
 
 
 const routes: Routes = [
-  { path:'', component:LoginComponent },
-  { path:'signup', component:SignupComponent },
-  { 
-    path:'dashboard', 
-    children:[
-      { path:'', component:DashboardComponent },
-      { path:'list', component:DashboardComponent },
-      { path:'edit', component:EditComponent },
-      { path:'edit/:username', component:EditComponent },
-      { path:'file', component:FileComponent }
+  { path: '', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  {
+    path: 'dashboard',
+    children: [
+      { path: '', component: DashboardComponent },
+      { path: 'list', component: DashboardComponent },
+      { path: 'edit', component: EditComponent },
+      { path: 'edit/:username', component: EditComponent },
+      { path: 'file', component: FileComponent }
     ]
   }
 ];

@@ -7,44 +7,37 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  public url="http://localhost:8000/";
+  public url = "http://localhost:8000/";
 
-  signup(value)
-  {
-    return this.http.post(this.url+'user/signup', value);
+  signup(value) {
+    return this.http.post(this.url + 'user/signup', value);
   }
 
-  login(value)
-  {
-    return this.http.post(this.url+'user/login',value);
+  login(value) {
+    return this.http.post(this.url + 'user/login', value);
   }
 
-  listUser()
-  {
-    const token=window.localStorage.getItem("token");
-    return this.http.get(this.url+'user/users',{headers:new HttpHeaders({ 'Authorization':token })});
+  listUser() {
+    const token = window.localStorage.getItem("token");
+    return this.http.get(this.url + 'user/users', { headers: new HttpHeaders({ 'Authorization': token }) });
   }
 
-  getUserValue(username)
-  {
-    return this.http.get(this.url+`user/${username}`);
+  getUserValue(username) {
+    return this.http.get(this.url + `user/${username}`);
   }
 
-  updateUser(value, username)
-  {
-    const token=window.localStorage.getItem('token');
-    return this.http.post(this.url+'user/edit',{value, username},{headers:new HttpHeaders({'Authorization':token})});
+  updateUser(value, username) {
+    const token = window.localStorage.getItem('token');
+    return this.http.post(this.url + 'user/edit', { value, username }, { headers: new HttpHeaders({ 'Authorization': token }) });
   }
 
-  download()
-  {
-    return this.http.get(this.url+'user/download',{responseType:'blob'})
+  download() {
+    return this.http.get(this.url + 'user/download', { responseType: 'blob' })
   }
 
-  upload(formData)
-  {
-    return this.http.post(this.url+'user/upload', formData)
+  upload(formData) {
+    return this.http.post(this.url + 'user/upload', formData)
   }
 }
