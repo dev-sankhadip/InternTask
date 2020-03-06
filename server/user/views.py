@@ -121,7 +121,7 @@ def download(request):
     writer = csv.writer(response)
     cursor.execute('select * from user_usermodel')
     users = cursor.fetchall()
-    writer.writerow('userid', 'username', 'email', 'phone', 'permission', 'usertype')
+    # writer.writerow(['userid', 'username', 'email', 'phone', 'permission', 'usertype'])
     for user in users:
         writer.writerow([user[0], user[1], user[2], user[4], user[5], user[6]])
     return response
