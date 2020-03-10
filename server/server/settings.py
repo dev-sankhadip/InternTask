@@ -72,7 +72,7 @@ TEMPLATES = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-       'http://localhost:4200',
+    'http://localhost:4200',
 )
 
 WSGI_APPLICATION = 'server.wsgi.application'
@@ -83,12 +83,12 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'test',
-    'USER': 'root',
-    'PASSWORD': 'root',
-    'HOST': 'localhost',
-    'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
