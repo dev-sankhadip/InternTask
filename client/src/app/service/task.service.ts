@@ -18,6 +18,7 @@ export class TaskService {
 
   list()
   {
-    return this.http.get(this.url+'task/list');
+    const token=window.localStorage.getItem("token");
+    return this.http.get(this.url+'task/list',{headers:new HttpHeaders({ 'authorization':token })});
   }
 }

@@ -10,28 +10,35 @@ import { TaskService } from '../service/task.service';
 })
 export class TaskComponent implements OnInit {
 
-  constructor( private service:TaskService ) { }
+  constructor(private service: TaskService) { }
 
   ngOnInit(): void {
+    this.listTask();
   }
 
-  public taskForm=new FormGroup({
-    des:new FormControl('',[ Validators.required ]),
-    type:new FormControl('',[ Validators.required ])
+  listTask() {
+    this.service.list()
+      .subscribe((res) => {
+        console.log(res);
+      }, (err) => {
+        console.log(err);
+      })
+  }
+
+  public taskForm = new FormGroup({
+    des: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required])
   })
 
-  add()
-  {
-    const taskid=Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
-    const appid=Math.floor(Math.random()*90000)+1;
-    this.service.create({...this.taskForm.value,appid,taskid})
-    .subscribe((res)=>
-    {
-      console.log(res);
-    },(err)=>
-    {
-      console.log(err);
-    })
+  add() {
+    const taskid = Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
+    const appid = Math.floor(Math.random() * 90000) + 1;
+    this.service.create({ ...this.taskForm.value, appid, taskid })
+      .subscribe((res) => {
+        console.log(res);
+      }, (err) => {
+        console.log(err);
+      })
   }
 
 }
