@@ -135,8 +135,9 @@ def upload(request):
             data_set = csv_file.read().decode('UTF-8')
             io_string = io.StringIO(data_set)
             next(io_string)
-            for column in csv.reader(io_string,delimiter=',',quotechar='|'):
-                cursor.execute(f"update user_usermodel set username='{column[1]}', email='{column[2]}', phone='{column[3]}', permission='{column[4]}', usertype='{column[5]}' where userid='{column[0]}'")
+            for column in csv.reader(io_string, delimiter=',', quotechar='|'):
+                cursor.execute(
+                    f"update user_usermodel set username='{column[1]}', email='{column[2]}', phone='{column[3]}', permission='{column[4]}', usertype='{column[5]}' where userid='{column[0]}'")
             return JsonResponse({"code": "200"})
         except Exception as e:
             print(e)
