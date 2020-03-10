@@ -28,7 +28,7 @@ def create(request):
                 taskid = value['value']['taskid']
                 cursor.execute(
                     f"insert into task_taskmodel values('{appid}','{taskid}','{des}','{tasktype}','Un-assigned','Open')")
-                return JsonResponse({ "code":"200" })
+                return JsonResponse({"code": "200"})
             else:
                 return HttpResponseNotAllowed("Unauthorised")
         except Exception as e:
@@ -40,4 +40,15 @@ def create(request):
 
 @csrf_exempt
 def list(request):
-    pass
+    if request.method == "GET":
+        token = request.headers['Authorization'].split("'")
+        username = checkJwt(token[1])
+        if username != 'error' or username != None:
+            cursor.execute('select * from task_taskmodel')
+            tasks = cursor.fetchall()
+            print(tasks)
+            return JsonResponse({"task": tasks})
+        else:
+            return HttpResponseBadRequest("Unauthorised")
+    else:
+        return HttpResponseBadRequest("Method not allowed")
