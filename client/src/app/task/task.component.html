@@ -89,18 +89,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form autocomplete="off" id="signup-form" method="POST" action="/users/signup"
-                    enctype="application/x-www-form-urlencoded">
+                <form [formGroup]="taskForm">
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"
                                         style="background-color: red; color:white; border-color:red;">
-                                        <i class="fa fa-user"></i>
+                                        Description
                                     </span>
                                 </div>
-                                <input required type="text" name="username" placeholder="Username"
+                                <input required type="text" formControlName="des" placeholder="Write task description"
                                     class="form-control border-left-0" style="border-color: red;" id="signup-username">
                             </div>
                         </div>
@@ -110,21 +109,15 @@
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend"><span
                                         class="input-group-text bg-dark border border-primary text-light">
-                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        Task Type
                                     </span></div>
-                                <input required type="email" name="email" placeholder="email" class="form-control"
-                                    id="signup-email">
+                                <input required type="text"formControlName="type" placeholder="Task Type eg: App, Desktop, Web"
+                                    class="form-control" id="signup-email">
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert"
-                        id="signup-email-alert-div">
-                        <strong id="signup-email-alert"></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <button class="btn btn-danger text-light float-lg-right" type="submit">ADD</button>
+                    <button class="btn btn-danger text-light float-lg-right" type="submit" (click)="add()"
+                        [disabled]="!taskForm.valid">ADD</button>
                 </form>
             </div>
         </div>
