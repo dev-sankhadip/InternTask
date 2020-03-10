@@ -34,6 +34,7 @@ export class FileComponent implements OnInit {
     this.service.upload(formData)
       .subscribe((res) => {
         console.log(res);
+        alert("Data uploaded");
       }, (err) => {
         console.log(err);
       })

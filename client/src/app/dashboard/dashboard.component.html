@@ -22,10 +22,10 @@
                     </tr>
                     <ng-container *ngFor="let user of users">
                         <tr>
-                            <td>{{ user[0] }}</td>
                             <td>{{ user[1] }}</td>
                             <td>{{ user[2] }}</td>
-                            <td>{{ user[4] }}</td>
+                            <td>{{ user[3] }}</td>
+                            <td>{{ user[5] }}</td>
                             <td><button [disabled]="isUser" class="btn btn-success"
                                     (click)="gotoEdit(user[1])">Edit</button></td>
                         </tr>

@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditComponent } from './edit/edit.component';
 import { FileComponent } from './file/file.component';
+import { TaskComponent } from './task/task.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
       { path: 'list', component: DashboardComponent },
       { path: 'edit', component: EditComponent },
       { path: 'edit/:username', component: EditComponent },
-      { path: 'file', component: FileComponent }
+      { path: 'file', component: FileComponent },
+      { path:'task', component:TaskComponent }
     ]
   }
 ];

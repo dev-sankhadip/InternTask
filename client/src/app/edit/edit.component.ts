@@ -33,13 +33,13 @@ export class EditComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.editForm.patchValue({
-          userid: res['user'][0][0],
-          username: res['user'][0][1],
-          email: res['user'][0][2],
+          userid: res['user'][0][1],
+          username: res['user'][0][2],
+          email: res['user'][0][3],
           // password:res['user'][0][3],
           // cpassword:res['user'][0][3],
-          phone: res['user'][0][4],
-          permission: res['user'][0][5]
+          phone: res['user'][0][5],
+          permission: res['user'][0][6]
         })
       }, (err) => {
         console.log(err);

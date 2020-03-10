@@ -3,6 +3,7 @@
     <a routerLink="/dashboard/list">List Users</a>
     <a [routerLink]="['/dashboard/edit/',username]">Edit User {{ username }}</a>
     <a routerLink="file" *ngIf="!isUser">Import Data</a>
+    <a routerLink="/dashboard/task" *ngIf="!isUser">Task List</a>
     <a (click)="logout()">Logout</a>
 </div>
 

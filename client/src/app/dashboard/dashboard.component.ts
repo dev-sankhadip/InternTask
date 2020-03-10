@@ -58,20 +58,21 @@ export class DashboardComponent implements OnInit {
     }
     this.users = [];
     this.usersArray.map((user) => {
-      if (user[2].startsWith(e.target.value)) {
+      if (user[1].startsWith(e.target.value)) {
         this.users.push(user);
       }
     })
   }
 
   filterEmail(e) {
+    console.log(e.target.value);
     if (e.target.value.length == 0) {
       this.users = this.usersArray;
       return;
     }
     this.users = [];
     this.usersArray.map((user) => {
-      if (user[3].startsWith(e.target.value)) {
+      if (user[2].startsWith(e.target.value)) {
         this.users.push(user);
       }
     })

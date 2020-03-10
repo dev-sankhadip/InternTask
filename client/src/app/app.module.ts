@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EditComponent } from './edit/edit.component';
 import { FileComponent } from './file/file.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FileComponent } from './file/file.component';
     DashboardComponent,
     NavbarComponent,
     EditComponent,
-    FileComponent
+    FileComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
               if (parseInt(attempt) == 2) {
                 var date = new Date();
                 date.setTime(date.getTime() + 300000);
-                document.cookie = "attempt=3" + "; expires=" + date.toGMTString() + "; path=/";
+                document.cookie = "attempt=3" + "; expires=" + date.toUTCString() + "; path=/";
                 localStorage.setItem("attempt", (parseInt(attempt) + 1).toString());
                 return;
               }
