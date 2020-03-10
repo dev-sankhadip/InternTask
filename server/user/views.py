@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound
 from django.db import connection
 from django.contrib.auth.hashers import make_password, check_password
-import random
+from random import random
 import jwt
 import csv
 import json
@@ -27,12 +27,12 @@ def login(request):
                 f"select * from user_usermodel where username = '{user}' or email='{user}'")
             isUser = cursor.fetchall()
             if len(isUser) > 0:
-                if check_password(password, isUser[0][3]):
+                if check_password(password, isUser[0][4]):
                     payload = {
-                        'username': isUser[0][1]
+                        'username': isUser[0][2]
                     }
                     token = jwt.encode(payload, 'task', algorithm='HS256',)
-                    return JsonResponse({'code': '200', 'token': f'{token}', 'type': f'{isUser[0][6]}'})
+                    return JsonResponse({'code': '200', 'token': f'{token}', 'type': f'{isUser[0][7]}'})
                 else:
                     return HttpResponseBadRequest("Password didn't match")
             else:
@@ -55,7 +55,7 @@ def signup(request):
             isUser = cursor.fetchall()
             if len(isUser) == 0:
                 cursor.execute(
-                    f"insert into user_usermodel values('{userid}', '{username}', '{email}', '{make_password(password)}', '{phone}','{permission}', 'admin')")
+                    f"insert into user_usermodel values('{random()}','{userid}', '{username}', '{email}', '{make_password(password)}', '{phone}','{permission}', 'user')")
                 return JsonResponse({"code": 201})
             else:
                 return HttpResponseBadRequest("User already exists")
