@@ -5,11 +5,13 @@
                 <span style="color: white; font-size: 23px;" class="ml-2">Manage Tasks</span>
                 <div style="float: right;">
                     <button class="btn btn-warning text-light" style="border-radius: 0;">Release</button>
-                    <button class="btn text-light" style="border-radius: 0; background-color: #31B0D5;">Assign to self</button>
-                    <button class="btn text-light" style="border-radius: 0;background-color: #EA4762;">ADD</button>
+                    <button class="btn text-light" style="border-radius: 0; background-color: #31B0D5;">Assign to
+                        self</button>
+                    <button class="btn text-light" data-toggle="modal" data-target="#taskmodal"
+                        style="border-radius: 0;background-color: #EA4762;">ADD</button>
                 </div>
             </div>
-            <table class="table">
+            <table class="table table-striped">
                 <thead class="">
                     <tr class="color">
                         <th scope="col">Application ID</th>
@@ -23,7 +25,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>75896</td>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">85859</label>
+                            </div>
+                        </td>
                         <td>t1</td>
                         <td>Develop a system to manage task</td>
                         <td>App</td>
@@ -36,7 +43,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>5689</td>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                <label class="custom-control-label" for="customCheck2">82689</label>
+                            </div>
+                        </td>
                         <td>t2</td>
                         <td> DevelopImage recignition app</td>
                         <td>Desktop</td>
@@ -49,7 +61,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>89677</td>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                <label class="custom-control-label" for="customCheck3">78965</label>
+                            </div>
+                        </td>
                         <td>t3</td>
                         <td>Develop a compiler</td>
                         <td>Web</td>
@@ -63,6 +80,53 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="taskmodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form autocomplete="off" id="signup-form" method="POST" action="/users/signup"
+                    enctype="application/x-www-form-urlencoded">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"
+                                        style="background-color: red; color:white; border-color:red;">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                                <input required type="text" name="username" placeholder="Username"
+                                    class="form-control border-left-0" style="border-color: red;" id="signup-username">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend"><span
+                                        class="input-group-text bg-dark border border-primary text-light">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span></div>
+                                <input required type="email" name="email" placeholder="email" class="form-control"
+                                    id="signup-email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert"
+                        id="signup-email-alert-div">
+                        <strong id="signup-email-alert"></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <button class="btn btn-danger text-light float-lg-right" type="submit">ADD</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
