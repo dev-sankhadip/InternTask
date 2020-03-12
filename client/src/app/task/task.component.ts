@@ -16,10 +16,13 @@ export class TaskComponent implements OnInit {
     this.listTask();
   }
 
+  public tasks = [];
+
   listTask() {
     this.service.list()
       .subscribe((res) => {
-        console.log(res);
+        this.tasks = res['task'];
+        console.log(this.tasks)
       }, (err) => {
         console.log(err);
       })
@@ -39,6 +42,10 @@ export class TaskComponent implements OnInit {
       }, (err) => {
         console.log(err);
       })
+  }
+
+  getClass(value) {
+    return value==='Open' ? 'open-status' : 'close-status';
   }
 
 }
