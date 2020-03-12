@@ -7,18 +7,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class TaskService {
 
-  constructor( private http:HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-  private url="http://localhost:8000/";
-  create(value)
-  {
-    const token=window.localStorage.getItem("token");
-    return this.http.post(this.url+'task/create',{value},{ headers:new HttpHeaders({ 'authorization':token }) });
+  private url = "http://localhost:8000/";
+  create(value) {
+    const token = window.localStorage.getItem("token");
+    return this.http.post(this.url + 'task/create', { value }, { headers: new HttpHeaders({ 'authorization': token }) });
   }
 
-  list()
-  {
-    const token=window.localStorage.getItem("token");
-    return this.http.get(this.url+'task/list',{headers:new HttpHeaders({ 'authorization':token })});
+  list() {
+    const token = window.localStorage.getItem("token");
+    return this.http.get(this.url + 'task/list', { headers: new HttpHeaders({ 'authorization': token }) });
   }
 }

@@ -45,7 +45,7 @@ export class TaskComponent implements OnInit {
   }
 
   getClass(value) {
-    return value==='Open' ? 'open-status' : 'close-status';
+    return value === 'Open' ? 'open-status' : 'close-status';
   }
 
 }
