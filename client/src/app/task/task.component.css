@@ -1,33 +1,28 @@
-.color
-{
+.color {
     color: #8693AA;
 }
 
-.open-status
-{
+.open-status {
     padding-left: 7px;
     padding-right: 7px;
     padding-top: 1px;
     padding-bottom: 3px;
     border-radius: 3px;
-    background-color: #5CB85C; 
+    background-color: #5CB85C;
     color: white;
 }
 
-.close-status
-{
+.close-status {
     padding-left: 7px;
     padding-right: 7px;
     padding-top: 1px;
     padding-bottom: 3px;
     border-radius: 3px;
-    background-color: #D9534F; 
+    background-color: #D9534F;
     color: white;
 }
 
-
-.edit-btn
-{
+.edit-btn {
     border-radius: 3px;
     background-color: #3CBC9B;
     color: white;

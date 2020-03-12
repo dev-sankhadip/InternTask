@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { TaskService } from '../service/task.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,14 +13,20 @@ export class TaskComponent implements OnInit {
 
   constructor(private service: TaskService) { }
 
+  private subscription: Subscription;
+
   ngOnInit(): void {
     this.listTask();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
   }
 
   public tasks = [];
 
   listTask() {
-    this.service.list()
+    this.subscription = this.service.list()
       .subscribe((res) => {
         this.tasks = res['task'];
         console.log(this.tasks)
